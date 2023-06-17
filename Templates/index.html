@@ -1,0 +1,452 @@
+{% extends 'base.html'%}
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STROLL</title>
+
+    <script src="https://kit.fontawesome.com/825b56df51.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/stroll-media.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+
+    {%block content%}
+    <div class="container2">
+        <div class="about">
+            <h4>Wheelie Nepal</h4>
+            <h1>Explore your Travel <span>Destinations</span></h1>
+            <h3>Enjoy the Best Wheel chair Accesible Destinations in Nepal with Wheelie Nepal Agency</h3>
+            <br>
+            <button>Read More</button>
+        </div>
+
+        <div class="swipe-images">
+
+        </div>
+    </div>
+
+    <div class="container3 container">
+        <div class="voyage con3">
+            <button><i class="fa-solid fa-earth-americas book-icon"></i></button>
+            <h2>Voyages & Cruises</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+        <div class="book con3">
+            <button><i class="fa-solid fa-bed book-icon"></i></button>
+            <h2>Hotel Bookings</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+        <div class="ticket con3">
+            <button><i class="fa-solid fa-plane book-icon"></i></button>
+            <h2>Air Tickets</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+        <div class="visa con3">
+            <button><i class="fa-regular fa-file-lines book-icon"></i></button>
+            <h2>Visas</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+
+    <div class="go-top">
+        <a href="#">
+            <i class='bx bx-up-arrow-alt'></i>
+        </a>
+    </div>
+
+    <div class="container4" id="container4">
+        <div class="container">
+            <h4><span class="st-line"></span>&nbsp;&nbsp; Hot Tours</h4>
+            <h2 class="head2">Popular WheelChair Packages</h2>
+            <div class="grid-images">
+                {% for dest in dests %}
+                <div class="g-img products">
+                    <img src="{{dest.imageUrl}}" alt="">
+                    <div class="img-text">
+                        <h3 class="product-name">{{dest.name}}</h3>
+                        <p>{{dest.description}}<a  class="product-price" href="{% url 'payment' %}"><span style="color:yellow">${{dest.price}}</span></a></p>
+                       
+                        <div class="rate" style="position:absolute;bottom:0;right:1;">
+                            <button style="background: transparent; border-style:none"><a href="{% url 'rating' dest.id %}" style="color:aliceblue">Rate</a></button>
+                            <button style="background: transparent; border-style:none"><a href="{% url 'destination_details' dest.id %}" style="color:aliceblue">View</a></button>
+                        </div>
+                    </div>
+                  
+
+                </div>
+                {% endfor %}
+                <!-- <div class="img2 g-img">
+                    <div class="img-text">
+                        <h3>Bangkok</h3>
+                        <p>3 Days, 2 Nights Starts From <span>$700</span></p>
+                    </div>
+                </div>
+                <div class="img3 g-img">
+                    <div class="img-text">
+                        <h3>Maldives</h3>
+                        <p>3 Days, 2 Nights Starts From <span>$600</span></p>
+                    </div>
+                </div>
+                <div class="img4 g-img">
+                    <div class="img-text">
+                        <h3>Nepal</h3>
+                        <p>7 Days, 7 Nights Starts From <span>$900</span></p>
+                    </div>
+                </div>
+                <div class="img5 g-img">
+                    <div class="img-text">
+                        <h3>London</h3>
+                        <p>3 Days, 2 Nights Starts From <span>$800</span></p>
+                    </div>
+                </div>
+                <div class="img6 g-img">
+                    <div class="img-text">
+                        <h3>Switzerland</h3>
+                        <p>5 Days, 4 Nights Starts From <span>$900</span></p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container5">
+         <button class="play-video"><a href=""><i class='bx bx-play' ></i></a></button> 
+    </div> -->
+    <div class="container5">
+        <div class="video-container">
+            <div class="video">
+                <video aria-label="video" src="static/images/video1.mp4" muted></video>
+            </div>
+
+        </div>
+        <div id="button"><button aria-label="play-video"><i class='bx bx-play playbutton' ></i></button></div>
+           
+
+        
+
+        <div class="popup-video">
+            <span aria-label="close-video-window-button">&times;</span>
+            <video src="static/images/video1.mp4" muted autoplay controls></video>
+        </div>
+
+    </div>
+
+    <!-- <div class="container5">
+        <iframe width="500" height="315" src="https://www.youtube.com/embed/jvN5hZzhFHM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div> -->
+
+    <div class="container6 container">
+        <div class="head6">
+            <h4><span class="st-line"></span>&nbsp;&nbsp; Guide Video</h4>
+            <h2 class="head2">Find Your Perfect Destination</h2>
+        </div>
+        <div class="content6">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus tempore facilis, alias perspiciatis quis consequuntur non nisi, hic veritatis nesciunt ducimus dolorum tempora mollitia repellat!</p>
+        </div>
+    </div>
+
+    <div class="container7 container">
+        <h4><span class="st-line"></span>&nbsp;&nbsp; 10-30% Off</h4>
+        <h2 class="head2">Book Now</h2>
+        <form id="form">
+            {% csrf_token %}
+            <div class="form-div">
+                <div class="form-item">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-item">
+                    <label for="destination">Destination</label>
+                    <select name="destination" id="destination">
+                        <option value="any">Any</option>
+                        <option value="africa">Africa</option>
+                        <option value="asia">Asia</option>
+                        <option value="australia">Australia</option>
+                        <option value="europe">Europe</option>
+                        <option value="n-america">North America</option>
+                        <option value="s-america">South America</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="activity">Activity</label>
+                    <select name="activity" id="activity">
+                        <option value="any">Any</option>
+                        <option value="city">City Tours</option>
+                        <option value="cultural">Cultural & Thematic Tours</option>
+                        <option value="family">Family Friendly Tours</option>
+                        <option value="holiday">Holiday & Seasonal Tours</option>
+                        <option value="luxury">Indulgence & Luxury Tours</option>
+                        <option value="outdoor">Outdoor Activities</option>
+                        <option value="relax">Relaxation Tours</option>
+                        <option value="wild">Wild & Adventure Tours</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="duration">Duration</label>
+                    <select name="duration" id="duration">
+                        <option value="any">Any</option>
+                        <option value="day1">1 Day Tour</option>
+                        <option value="day2">2-4 Days Tour</option>
+                        <option value="day5">5-7 Days Tour</option>
+                        <option value="day7">7+ Days Tour</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="=date">Date</label>
+                    <input type="date" name="date" id="date" value="mm/dd/yyyy">
+                </div>
+
+                <div  id="form-button">
+                    <label for="submit">Submit</label>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+        </form>
+            <div class="hidden" id="payment-info">
+                <label for="payment">Continue</label>
+                <button id="payment">Payment</button>
+            </div>
+        
+    </div>
+
+    <div class="container8">
+        <div class="sub-div8">
+            <h4><span class="st-line"></span>&nbsp;&nbsp; Lets Stay In Touch</h4>
+            <h2 class="head2">Sign Up For 25% Discount</h2>
+            <p class="sub-p1">Want to get an instant discount for your next tour?
+                Leave your email and sign up for our newsletter with 25% all our offers.
+            </p>
+
+            <input type="email" id="email" placeholder="Email">
+            <input type="submit">
+
+            <p class="sub-p2">Subscribe to our free weekly newsletter for new update releases (no spam)</p>
+        </div>
+    </div>
+
+    <div class="container9 container">
+        <h4><span class="st-line"></span>&nbsp;&nbsp; Testimonials</h4>
+        <h2 class="head2">Feedback From Our Customers</h2>
+        <div class="sub-div9">
+            <div class="fb fb1">
+                <i class="fa-solid fa-quote-left"></i>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quod odio rem, voluptates reprehenderit eaque sapiente. Quidem consequatur harum dolores.
+                <div class="sub-fb">
+                    <img src="{% static 'images/skysports-eden-hazard-chelsea_4677916.jpg' %}" alt="">
+                    <div class="name-fb">
+                        <h3>Eden Hazard</h3>
+                        SEO Expert
+                    </div>
+                </div>
+            </div>
+            <div class="fb fb2">
+                <i class="fa-solid fa-quote-left"></i>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quod odio rem, voluptates reprehenderit eaque sapiente. Quidem consequatur harum dolores.
+                <div class="sub-fb">
+                    <img src="{% static 'images/0_GettyImages-98940242.jpg' %}" alt="">
+                    <div class="name-fb">
+                        <h3>Didier Drogba</h3>
+                        SEO Expert
+                    </div>
+                </div>
+            </div>
+            <div class="fb fb3">
+                <i class="fa-solid fa-quote-left"></i>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quod odio rem, voluptates reprehenderit eaque sapiente. Quidem consequatur harum dolores.
+                <div class="sub-fb">
+                    <img src="{% static '/images/ezgif.com-webp-to-jpg (6).jpg ' %}" alt="">
+                    <div class="name-fb">
+                        <h3>Peter Cech</h3>
+                        SEO Expert
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-top">
+            <div class="container top">
+                <div class="soc-media">
+                    <h2><a href="./stroll.html">Str<i class="fa-solid fa-earth-americas foot-font"></i>ll</a></h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum nisi exercitationem magni quam laudantium tenetur fugit officiis consequatur voluptatibus molestiae!</p>
+                    <div class="social-links">
+                        <button><i class="fa-brands fa-facebook-f"></i></button>
+                        <button><i class="fa-brands fa-linkedin-in"></i></button>
+                        <button><i class="fa-brands fa-instagram"></i></button>
+                        <button><i class="fa-brands fa-google-plus-g"></i></button>
+                        <button><i class="fa-brands fa-github"></i></button>
+                    </div>
+                </div>
+    
+                <div class="quick-links">
+                    <h3>QUICK LINKS</h3>
+                    <ul class="link-list">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div class="help">
+                    <h3>HELP & SUPPORT</h3>
+                    <ul class="link-list">
+                        <li><a href="#">Live Chart</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Terms of Services</a></li>
+                    </ul>
+                </div>
+    
+                <div class="ig-gallery">
+                    <h3>INSTAGRAM GALLERY</h3>
+                    <div class="ig-grid">
+                        <div class="grid-item"><a href="#"><img src="{% static 'images/7lFlMEgNxL.jpg' %}" alt="" class="ig-image"></a></div>
+                        <div class="grid-item"><a href="#"><img src="./beautiful-shot-house-near-lake-with-mount-ojstrica-bled-slovenia.jpg" alt="" class="ig-image"></a></div>
+                        <div class="grid-item"><a href="#"><img src="./langtang-gosainkunda-trek.jpg" alt="" class="ig-image"></a></div>
+                        <div class="grid-item"><a href="#"><img src="./ezgif.com-webp-to-jpg (5).jpg" alt="" class="ig-image"></a></div>
+                        <div class="grid-item"><a href="#"><img src="./new-york-usa-97371-2.jpg" alt="" class="ig-image"></a></div>
+                        <div class="grid-item"><a href="#"><img src="./ezgif.com-webp-to-jpg (3).jpg" alt=""class="ig-image" ></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot-bottom">
+            <div class="container bottom">
+                <div class="b-left">
+                    <p>&copy; 2023 Stroll. All rights reserved. Designed by <span><a href="#">Riten</a></span></p>
+                </div>
+    
+                <div class="b-right">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        /*csrf token */
+        
+        document.querySelectorAll('#button').forEach(button=>{
+            button.onclick = () =>{
+                document.querySelector('.popup-video').style.display ='block';
+                /*document.querySelector('.popup-video video').src = vid.getAttribute('src'); */
+                document.getElementById('button').style.display ='none';
+            }
+            
+        })
+
+        document.querySelector('.popup-video span').onclick = () =>{
+            document.querySelector('.popup-video').style.display ='none';
+            document.querySelector('.popup-video video').pause()
+            document.getElementById('button').style.display ='block';
+        }
+        /* form = document.getElementById('form')
+
+        form.addEventListener('submit' , function(e){
+            e.preventDefault()
+            console.log("form-submitted")
+            document.getElementById('form-button').classList.add('hidden')
+            document.getElementById('payment-info').classList.remove('hidden')
+        }) */
+
+        form = document.getElementById('form')
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            console.log("Form submitted")
+            document.getElementById('form-button').classList.add('hidden')
+            document.getElementById('payment-info').classList.remove('hidden')
+
+        })
+
+       
+        document.getElementById('payment').addEventListener('click', function (e){
+            submitFormData()
+        })
+
+        function submitFormData(){
+            console.log('Payment button clicked')
+
+            var userFormData ={
+                'name' : null,
+                'destination': null,
+                'activity' : null,
+                'duration': null,
+                'date' : null,
+            }
+
+            var url ='custom'
+            console.log(csrftoken); 
+            fetch(url, {
+                method: 'POST',
+
+                headers:{
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken' : csrftoken,
+                },
+
+                body:JSON.stringify({'form': userFormData})
+            })
+
+            .then((response) => {
+                    return response.json()
+            })
+
+            .then((data) => {
+                console.log('Success:', data);
+                alert('Transaction completed');
+                window.location.href= "{% url 'home' %}"
+            })
+
+
+
+        }
+        let products = document.getElementsByClassName('products');
+        /* let productName = document.getElementById('product-name');
+        let productPrice = document.getElementById('product-price'); */
+
+        function updatepriceannouncement(){
+            for(let i=0;i<products.length;i++){
+                let product = products[i];
+                let productName = product.getElementsByClassName('product-name')[0];
+                let productPrice = product.getElementsByClassName('product-price')[0];
+
+                let name = productName.textContent;
+                let price = productPrice.textContent;
+
+                productName.setAttribute('aria-label', 'Package Name: ' + name)
+                productPrice.setAttribute('aria-label', 'Package Pricefor' + name + price)
+    
+            }
+
+
+           
+        }
+
+        updatepriceannouncement();
+    </script>
+
+    {%endblock %}
+</body>
+</html>

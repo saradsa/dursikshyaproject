@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <style>
+        .box{
+            display: flex;
+            width: 100%;
+            margin: 20px;
+            background-color: red;
+        }
+
+        .review{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+        <div class="ig">
+        <img class="blog-img" src="{{destination.imageUrl}}" alt="">
+        </div>
+    
+        <br>
+        <p style="text-align: center;">{{destination.name}}<br><br>
+        <b>{{destination.description}}</b></p>
+        
+        <!-- <div class="cover">
+            <div class="blog-image"><img style="margin:10px;height: 50px;
+            width: 50px;
+            border-radius: 50%;" src="images/245lady.jpg" alt=""></div>
+            <div class="name">Charlotte Lucy</div>
+        </div> -->
+
+        <br><br>
+        <h4 style="text-align:center">Get Directions</h4>
+        <div style= "display:flex;justify-content:center;padding:10px 0" class="direction"><iframe src="{{blogdata.iframe}}" frameborder="0"></iframe></div>
+
+        <div class="reviews_count">
+            Totalreviews: {{reviews_count}}
+           
+
+        </div>
+
+        <div class="averge">
+            Average: {{avg_reviews.rating__avg}}/5 stars
+        </div>
+    
+        <button><a href="{%url 'rating' destination.id%}">Rate this place</a></button>
+
+
+        <h2>Reviews</h2>
+        {% for review in reviews%}
+
+        
+        <div class="box">
+        <div class="reviews">
+        {{review.description}}
+         by {{review.user}}
+         <div class="date">
+            {{review.created_at}}
+         </div>
+        </div>
+        <div class="rate">
+            {{review.rating}}/5 stars
+        </div>
+    </div>
+        
+
+        {% endfor%}
+    </div>
+</body>
+</html>

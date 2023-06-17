@@ -1,0 +1,33 @@
+{% load static %}
+<head>
+    <script src="https://kit.fontawesome.com/825b56df51.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/stroll-media.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<h1>Rate this Place</h1>
+
+<div class="g-img products">
+    <img src="{{destination.imageUrl}}" alt="">
+    <div class="img-text">
+        <h3 class="product-name">{{destination.name}}</h3>
+        
+       
+        <div class="rate" style="position:absolute;bottom:0;right:1;">
+            
+        </div>
+    </div>
+  
+
+</div>
+<form action="" method="POST">
+    {%csrf_token%}
+    {{form.description}}
+    {{form.rating}}
+    <input type="submit" value="submit">
+</form>

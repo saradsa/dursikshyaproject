@@ -1,0 +1,160 @@
+{% extends 'base.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STROLL</title>
+
+    <script src="https://kit.fontawesome.com/825b56df51.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/stroll-media.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+
+{%block content%}
+<body>
+   
+    <div class="container7 container">
+        <h4><span class="st-line"></span>&nbsp;&nbsp; 10-30% Off</h4>
+        <h2 class="head2">Book Now</h2>
+        <form id="form">
+            {% csrf_token %}
+            <div aria-label="Form for payment" class="form-div">
+                <div class="form-item">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-item">
+                    <label for="destination">Destination</label>
+                    <select name="destination" id="destination">
+                        <option value="any">Any</option>
+                        <option value="africa">Africa</option>
+                        <option value="asia">Asia</option>
+                        <option value="australia">Australia</option>
+                        <option value="europe">Europe</option>
+                        <option value="n-america">North America</option>
+                        <option value="s-america">South America</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="activity">Activity</label>
+                    <select name="activity" id="activity">
+                        <option value="any">Any</option>
+                        <option value="city">City Tours</option>
+                        <option value="cultural">Cultural & Thematic Tours</option>
+                        <option value="family">Family Friendly Tours</option>
+                        <option value="holiday">Holiday & Seasonal Tours</option>
+                        <option value="luxury">Indulgence & Luxury Tours</option>
+                        <option value="outdoor">Outdoor Activities</option>
+                        <option value="relax">Relaxation Tours</option>
+                        <option value="wild">Wild & Adventure Tours</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="duration">Duration</label>
+                    <select name="duration" id="duration">
+                        <option value="any">Any</option>
+                        <option value="day1">1 Day Tour</option>
+                        <option value="day2">2-4 Days Tour</option>
+                        <option value="day5">5-7 Days Tour</option>
+                        <option value="day7">7+ Days Tour</option>
+                    </select>
+                </div>
+
+    
+
+                <div  id="form-button">
+                    <label for="submit">Submit</label>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+        </form>
+            <div class="hidden" id="payment-info">
+                <label for="payment">Continue</label>
+                <!-- <button id="payment">Payment</button> -->
+            </div>
+        
+    </div>
+</body>
+
+<script type="text/javascript">
+    /*csrf token */
+    
+    
+    
+
+     form = document.getElementById('form')
+
+    form.addEventListener('submit' , function(e){
+        e.preventDefault()
+        console.log("form-submitted")
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+    }) 
+
+    form = document.getElementById('form')
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        console.log("Form submitted")
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+
+    })
+
+   
+    /*document.getElementById('payment').addEventListener('click', function (e){
+        submitFormData()
+    })*/
+
+     function submitFormData(){
+        console.log('Payment button clicked')
+
+        var userFormData ={
+            'name' : null,
+            'destination': null,
+            'activity' : null,
+            'duration': null,
+            'date' : null,
+        }
+
+        var url ='custom'
+        console.log(csrftoken); 
+        fetch(url, {
+            method: 'POST',
+
+            headers:{
+                'Content-Type': 'application/json',
+                'X-CSRFToken' : csrftoken,
+            },
+
+            body:JSON.stringify({'form': userFormData})
+        })
+
+        .then((response) => {
+                return response.json()
+        })
+
+        .then((data) => {
+            console.log('Success:', data);
+            alert('Transaction completed');
+            window.location.href= "{% url 'home' %}"
+        })
+
+
+
+    } 
+</script>
+
+{%endblock%}
